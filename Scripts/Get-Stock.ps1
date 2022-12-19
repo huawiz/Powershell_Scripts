@@ -8,7 +8,7 @@ function get-stock {
     $web = 'https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&'
     $condition = "date=$LastDate&stockNo=$StockID"
 
-    $stock = Invoke-RestMethod ($web+$condition)
+    $stock = Invoke-RestMethod ($web + $condition)
 
     #detail
     $YM = $stock.title.Split(' ')[0]

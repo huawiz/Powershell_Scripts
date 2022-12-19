@@ -10,7 +10,7 @@
 $Person = @{ 
 	#UserData
 	Name = "UserName"
-	}
+}
 
 # 密碼通行證，要用二階段認證，並且取得應用程式用的密碼
 $From = "test@gmail.com"
@@ -19,24 +19,24 @@ $Credential = New-Object -TypeName System.Management.Automation.PSCredential -Ar
 
 # 寄送資料
 $props = @{
-	From = "test@gmail.com" #寄送帳戶
-	To = "$($Person.Name)<$($Person.email)>"
-	Body = "Hello,{{Person}}<br>BR,<br>MyName"
-	Subject = "Email Title" #標題
-	UseSsl = $true
-	Port = 587
-	BodyAsHtml = $true
+	From        = "test@gmail.com" #寄送帳戶
+	To          = "$($Person.Name)<$($Person.email)>"
+	Body        = "Hello,{{Person}}<br>BR,<br>MyName"
+	Subject     = "Email Title" #標題
+	UseSsl      = $true
+	Port        = 587
+	BodyAsHtml  = $true
 	Attachments = "" #若要在Email插入圖片，需要附加檔案
-	SmtpServer = "smtp.gmail.com"
-    encoding = "utf8" #Unicode
-    Credential = $Credential
+	SmtpServer  = "smtp.gmail.com"
+	encoding    = "utf8" #Unicode
+	Credential  = $Credential
 }
 
 
 
 
 # Replace 信件內容，把資料更新成User資料
-$props.Body = $props.Body.Replace('{{Person}}',$Person.Name)
+$props.Body = $props.Body.Replace('{{Person}}', $Person.Name)
 
 
 
