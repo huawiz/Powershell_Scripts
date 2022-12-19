@@ -47,7 +47,12 @@ function build-VHD {
                 Write-Host "${VMName} exists."
             }
             # 設定同名的硬碟到同名的主機
-            Set-VMHardDiskDrive -VMName $VMName -path $VHDPath
+            if (-not(get-VMHardDiskDrive -VMNAME $VMNAME)) {
+                Add-VMHardDiskDrive -VMName $VMName -path $VHDPath
+            }
+            else {
+                Set-VMHardDiskDrive -VMName $VMName -path $VHDPath
+            }
         }
         # 順便開啟VM
         if ($openVM) {
